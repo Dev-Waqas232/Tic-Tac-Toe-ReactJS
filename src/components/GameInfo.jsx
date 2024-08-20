@@ -1,4 +1,8 @@
+import { useGame } from '../context/GameContext';
+
 const GameInfo = () => {
+  const { newGame } = useGame();
+
   return (
     <div className="text-white font-primary">
       <h1 className="text-3xl font-bold">Tic Tac Toe</h1>
@@ -12,7 +16,10 @@ const GameInfo = () => {
         ensures the game continues until one player wins by getting three in a
         row, eliminating the possibility of a draw.
       </p>
-      <button className="bg-textPrimary mt-6 px-8 py-2 rounded-md font-semibold active:scale-95">
+      <button
+        className="bg-textPrimary mt-6 px-8 py-2 rounded-md font-semibold active:scale-95"
+        onClick={newGame}
+      >
         New Game
       </button>
     </div>

@@ -1,22 +1,26 @@
-import React from "react";
+import React from 'react';
+import { useGame } from '../context/GameContext';
 
 const Squares = () => {
-  const initialBoard = Array(3)
-    .fill(null)
-    .map(() => Array(3).fill(null));
+  const { board, handleClick } = useGame();
 
   return (
     <div className="grid grid-cols-3 gap-2 mt-6">
-      {initialBoard.map((row, rowIndex) =>
-        row.map((square, colIndex) => (
-          <button
-            key={`${rowIndex}-${colIndex}`}
-            className="h-20 bg-bgPrimary border border-gray-700 text-2xl font-bold flex items-center justify-center rounded-sm"
-          >
-            {square}
-          </button>
-        ))
-      )}
+      {board.map((cell, index) => (
+        <button
+          key={index}
+          onClick={() => handleClick(index)}
+          className={`h-20 bg-bgPrimary border border-gray-700 text-5xl font-bold flex items-center justify-center rounded-sm  ${
+            board[index] === 'X'
+              ? 'text-textPrimary'
+              : board[index] === 'O'
+              ? 'text-white'
+              : ''
+          } `}
+        >
+          {board[index]}
+        </button>
+      ))}
     </div>
   );
 };
